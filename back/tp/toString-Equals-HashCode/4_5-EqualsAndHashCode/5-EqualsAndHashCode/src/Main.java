@@ -7,7 +7,7 @@ import java.util.List;
  */
 public class Main {
     public static void main(String[] args) {
-        System.out.println("=== TRABAJO PRÁCTICO 4: MÉTODO EQUALS() ===\n");
+        System.out.println("=== Equals and HashCode() ===\n");
 
         System.out.println("CREANDO PRODUCTOS:");
         Producto producto1 = new Producto("01", "Laptop Dell", 1200.50);
