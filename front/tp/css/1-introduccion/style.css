@@ -1,0 +1,124 @@
+
+/* 
+   BOX-SIZING: Explica cómo se calcula el tamaño total de un elemento
+   
+   - content-box (PREDETERMINADO): 
+     * width/height SOLO incluye el contenido
+     * padding, border y margin se SUMAN al width/height
+     * Ejemplo: width: 250px + padding: 16px + border: 1px = 268px total
+   
+   - border-box:
+     * width/height incluye contenido + padding + border
+     * margin NO se incluye (siempre se suma por fuera)
+     * Ejemplo: width: 250px incluye contenido + padding + border = 250px total
+     
+   border-box es más predecible para diseños responsivos
+*/
+
+p {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+}
+
+#carta {
+    background: rgba(44, 190, 190, 0.575);
+    width: 250px;
+    margin: 16px 0;
+    padding: 12px 16px;
+    border: 1px solid #000000;
+    border-radius: 16px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.644);
+    box-sizing: border-box; /* Incluye padding y border en el width */
+}
+blockquote {
+    font-style: italic;
+    letter-spacing: 0.5px;
+    font-family: 'Courier New', Courier, monospace;
+}
+h1 {
+    font-size: 32px;
+    color: #333;
+    box-shadow: 3px 5px 5px 10px rgba(58, 57, 57, 0.3);
+    text-transform: uppercase;
+}
+.que-es-css {
+    font-weight: bold;
+    font-size: 18px;
+    color: rgba(150, 212, 212, 0.938);
+}
+#que-es-css {
+    font-weight: bold;
+    font-size: 18px;
+    color: rgb(109, 109, 230);
+}
+
+/* EJERCICIO 5: GALERÍA DE TARJETAS CON DIFERENTES DISPLAYS */
+
+.contenedor {
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 10px 0;
+    background: transparent;
+}
+
+.contenedor-inline {
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 10px 0;
+    background: transparent;
+}
+
+/* CAJA 1: DISPLAY BLOCK - Se apilan verticalmente */
+.caja-1 {
+    display: block;
+    background-color: lightblue;
+    border: 1px solid #333;
+    width: 100px;
+    height: 50px;
+    margin: 2px 0;
+    padding: 10px;
+    text-align: center;
+}
+
+/* CAJA 2: DISPLAY INLINE - Se comportan como texto */
+.caja-2 {
+    display: inline;
+    background-color: lightblue;
+    border: 1px solid #333;
+    padding: 8px 12px;
+    margin: 0 2px;
+    text-align: center;
+}
+
+/* CAJA 3: DISPLAY INLINE-BLOCK - En línea pero mantienen box model */
+.caja-3 {
+    display: inline-block;
+    background-color: lightblue;
+    border: 1px solid #333;
+    width: 90px;
+    height: 50px;
+    margin: 2px;
+    padding: 10px;
+    text-align: center;
+}
+
+/* VARIABLES CSS */
+:root {
+    --color-fondo: #6a94aa;
+    --color-texto: #292525;
+    --color-acento: #104b7c;
+}
+
+#carta-variables {
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    border: 2px solid var(--color-acento);
+    width: 300px;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 10px;
+}

@@ -1,0 +1,80 @@
+header {
+    background-color: #f8f8f8;
+    padding: 20px;
+    text-align: center;
+}
+header h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+header h2 {
+    color: cadetblue;
+    margin: 10px;
+    font-size: 18px;
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+:root {
+  --color-fondo: #f8f8f8;
+  --color-acento: #007bff;
+  --color-texto: #333;
+  --color-secundario: #555;
+}
+
+.producto {
+    background-color: var(--color-fondo);
+    display: inline-block;
+    width: 200px;
+    min-height: 350px;
+    height: auto;
+    border: 2px solid #eee;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+}
+.producto img {
+    height: 180px;
+    object-fit: cover;
+
+    border-radius: 10px;
+    border: 2px solid #eee;
+}
+.producto h3 {
+    margin: 10px 0 5px 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+.producto p {
+    color: var(--color-secundario);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    margin: 5px 0;
+    letter-spacing: 0.5px;
+
+}
+.producto span {
+    display: block;
+    margin: 10px 0;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--color-texto);
+}
+.producto button {
+    background-color: var(--color-acento);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
