@@ -6,8 +6,7 @@ Santiago Ruben Sordi
 Página web desarrollada para el restaurante "La Buena Mesa" como proyecto final de Programación III. El sitio incluye información del menú, formulario de reservas y ubicación del restaurante.
 
 ## GitHub
-https://github.com/sordi005/Practico-html-LaBuenaMesa
-
+https://github.com/sordi005/prog3/tree/main/front/tp/html/La_buena_mesa
 ## Estructura del Proyecto
 ```
 La_buena_mesa/
