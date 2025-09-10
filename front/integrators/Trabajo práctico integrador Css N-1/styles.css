@@ -1,70 +1,72 @@
  
-/* === Variables === */ 
+/* Variables */
 :root { 
-  --bg: #f8fafc; /* Fondo de la página */
-  --panel: #fff; /* Fondo de tarjetas/paneles */
-  --text: #0f172a; /* Texto principal */
-  --text-white: #fff; /* Texto en color blanco */
-  --muted: #64748b; /* Texto secundario / subtítulos / notas */
-  --primary: #2563eb; /* Color principal (botones, enlaces) */
-  --primary-600: #1d4ed8; /* Hover de elementos primarios */
-  --primary-700: #1e40af; /* Estado activo de elementos primarios */
-  --accent: #16a34a; /* Verde positivo / estados correctos */
-  --danger: #dc2626; /* Rojo peligro / alerta */
-  --radius: 14px; /* Borde redondeado general */
-  --shadow: 0 6px 24px rgba(15, 23, 42, 0.08); /* Sombra de paneles, cards */
-  --container: 1100px; /* Ancho máximo del contenido central */
-  --space-1: 4px; /* Detalles muy pequeños, íconos o separación mínima */
-  --space-2: 8px; /* Pequeños paddings internos de botones o inputs */
-  --space-3: 12px; /* Margen entre elementos secundarios */
-  --space-4: 16px; /* Paddings estándar en tarjetas o botones */
-  --space-5: 20px; /* Separaciones medias, secciones internas */
-  --space-6: 24px; /* Paddings grandes dentro de paneles / cards */
-  --space-8: 32px; /* Márgenes entre bloques principales */
-  --space-10: 40px; /* Separación de secciones grandes */
-  --space-12: 48px; /* Espacios top/bottom grandes para hero o secciones principales */
+  --bg: #f8fafc;
+  --panel: #fff;
+  --text: #0f172a;
+  --text-white: #fff;
+  --muted: #64748b;
+  --primary: #2563eb;
+  --primary-600: #1d4ed8;
+  --primary-700: #1e40af;
+  --accent: #16a34a;
+  --danger: #dc2626;
+  --radius: 14px;
+  --shadow: 0 6px 24px rgba(15, 23, 42, 0.08);
+  --container: 1100px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
 } 
 
 
+/* Reset */
 * { 
   box-sizing: border-box; 
   margin: 0; 
   padding: 0; 
-} 
+}
+
 body { 
   margin: 0 auto;
   font-family: system-ui, -apple-system; 
   line-height: 1.5; 
   color: var(--text); 
   background: var(--bg); 
-} 
+}
+
+/* Header */
 .site-header {
     background: var(--panel);
     box-shadow: var(--shadow);
-    position: sticky; /* Se queda arriba al hacer scroll */
+    position: sticky;
     top: 0;
-
 }
-/* contenedor de header */
+
 .site-header .container {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Espacio entre logo y menú */
+    justify-content: space-between;
     flex-direction: row;
-    /* Tamaño y espaciado */
     max-width: var(--container); 
     margin: 0 auto; 
     padding: var(--space-2) var(--space-4); 
     background: var(--panel);
 }
 
- /* ----- Marca ----- */
 .site-header__logo {
   display: flex;
   align-items: center;
   gap: var(--space-2);
   text-decoration: none;
 }
+
 .site-header__mark { 
   width: 30px; 
   height: 30px; 
@@ -76,14 +78,13 @@ body {
   color: #fff; 
   font-weight: 800; 
 }
+
 .site-header__title {
   font-size: 14px; 
   font-weight: 500;
   color: var(--text); 
 }
-/* ------ ------ ----- */
 
-/** --- Navegador Mobil --- */
 .nav-hamburger:hover {
     background: rgba(37, 99, 235, 0.1);
 }
@@ -93,32 +94,30 @@ body {
     height: 20px;
 }
 
-/* ----- Navegación de escritorio ----- */
-
 .site-header__list { 
   display: flex;
   list-style: none; 
   gap: var(--space-3); 
 }
+
 .site-header__link {
     color: var(--text);
     font-size: 15px;
     text-decoration: none;
     font-weight: 600;
-    padding: var(--space-2) var(--space-4); /* Para que sea más clickeable */
+    padding: var(--space-2) var(--space-4);
     border-radius: var(--radius);
 }
-/* ----- ------- ------ */
-/* Navegación móvil */
+
 @media screen and (max-width: 768px) {
   .site-header__nav {
-    display: none; /* Oculta el menú en pantallas pequeñas */
+    display: none;
   }
   .nav-hamburger {
     background: none;
     border: none;
-    display: flex; /* Visible en mobile */
-    justify-content: center; /* Centrar el ícono */
+    display: flex;
+    justify-content: center;
     align-items: center;
     padding: var(--space-2);
     border-radius: var(--radius);
@@ -126,102 +125,116 @@ body {
     min-height: 44px;
   }
   .site-header .container {
-    justify-content: space-between; /* Espacio entre logo y menú */
+    justify-content: space-between;
   }
-  
 }
-/* ----- Navegación de escritorio ----- */
+
 @media screen and (min-width: 769px) {
   .nav-hamburger {
-    display: none; /* Oculta el botón de menú en pantallas grandes */
+    display: none;
   }
   .site-header__nav {
-    display: flex; /* Muestra el menú en pantallas grandes */
+    display: flex;
   }
 }
 
-/** ======== Main ========= */
-
+/* Main */
 .site-main {
-  max-width: var(--container);
-  padding: var(--space-6);
+  max-width: 990px;
+  padding: var(--space-5);
   background: var(--bg);
   margin: 0 auto;
-
 }
 
 .content-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
-/* DESKTOP: 2 columnas */
+
 @media (min-width: 768px) {
     .content-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: auto auto;
+        align-items: flex-start;
+        justify-content: space-around;
+        gap: 2rem;
     }
 }
 
-
-/** ======== Botones ========= */
+/* Botones */
 
 .buttons-section {
   
   padding: var(--space-6);
   background: var(--panel);
-  border-radius: 10px;
+  border-radius: 15px;
   box-shadow: var(--shadow);
+  max-width: 570px;
+  width: 100%;
 }
 
 @media screen and (min-width: 1000px) {
   .buttons-section {
-    min-width: 550px;
+    max-width: 570px;
   }
 }
 
 .buttons-section h2 {
+  font-size: 1.25rem;
   margin-bottom: var(--space-2);
 }
 
 /* RESPONSIVE: desktop */
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
   .buttons-section {
-      min-width: 600x;
+      max-width: 570px;
     }
   .btn-group {
-    gap: var(--space-2); /* ← Gap ligeramente mayor para desktop */
-    justify-content: flex-start; /* ← Alinear al inicio */
+    gap: var(--space-2); 
+    justify-content: flex-start; 
   }
   
   .buttons-section .btn {
-    min-width: auto;
-    font-size: 1rem;
-    min-width: 80px; /* ← Ancho mayor para desktop */
-    padding: var(--space-2) var(--space-3); /* ← Más padding para desktop */
-  }
-  .buttons-section .btn{
     font-size: 0.75rem;
-    min-width: 90px !important;
-    min-height: 40px;
+    min-width: 80px;
+    min-height: 40px; 
+    padding: var(--space-2) var(--space-3); 
   }
-  .btn--icon {
-      min-width: 120px !important;
-      min-height: 40px !important;
+
+  .buttons-section .btn--icon {
+    background: var(--primary);
+    color: white;
+    border-radius: 25px ;
+    min-width: 130px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
   }
+  
   .btn--disabled {
     min-width: 85px;
   }
 
 }
 
-.buttons-section .btn{
+
+
+
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  justify-content: left; /* ← Centrar los botones */ 
+}
+
+
+.btn{
   flex-shrink: 0;
   white-space: nowrap;
   font-size: 0.60rem;
-  min-width: 60px;
-  min-height: 25px;
-  padding: var(--space-1) var(--space-1); /* ← Padding horizontal reducido */
+  padding: var(--space-1) var(--space-1); 
   border-radius: 25px;
   border: none;
   font-weight: 550;
@@ -230,29 +243,27 @@ body {
 }
 
 
-.btn-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-1); /* ← Gap mínimo para layout compacto */
-  align-items: center;
-}
 
 .btn--primary{
   background: var(--primary);
   color: white;
 }
+
 .btn--primary:hover {
   background: var(--primary-600);
   transform: translateY(-1px);
 }
 
 .btn--secondary{
-  min-width: 80px !important;
-  background: #eeeff1;
+  min-width: 80px ;
+  background: #8b8e91;
   color: var(--text);
+  border: 1.5px solid #e2e5e9;
 }
+
 .btn--secondary:hover {
-  background: #e2e5e9;
+  background: #f8f9fa;
+  border-color: #d1d5db;
   transform: translateY(-1px);
 }
 
@@ -278,7 +289,7 @@ body {
   background: var(--primary);
   color: white;
   border-radius: 25px !important;
-  min-width: 85px !important;
+  min-width: 90px !important;
   min-height: 30px !important;
   display: flex;
   align-items: center;
@@ -310,18 +321,164 @@ body {
 }
 
 
-/** ======== Tarjetas de Producto ========= */
-
-
+/* Tarjetas de Producto */
 .product-card {
-  border: 1px solid var(--border);
+  border: none;
   border-radius: var(--radius);
-  padding: var(--space-4);
+  padding: var(--space-6);
   background: var(--panel);
-
+  box-shadow: var(--shadow);
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
 }
 
+/* Título */
 .product-card h2 {
-  font-size: 1.5rem;
-  margin-bottom: var(--space-2);
+  font-size: 1rem;
+  margin-bottom: var(--space-3);
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* Imagen y badge */
+.product-card__media {
+  position: relative;
+  width: 100%;
+  height: 320px; 
+  background: #f8f9fa; 
+  border-radius: var(--radius);
+  margin-bottom: var(--space-5);   
+}
+
+.product-card__img {
+ 
+  display: block;
+  margin: auto;
+}
+
+.product-card__badge {
+  position: absolute;
+  top: 8px; 
+  left: 8px;
+  background: #ff9500; 
+  color: #fff;
+  padding: 2px 8px; 
+  border-radius: 8px; 
+  font-size: 0.7rem;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Info */
+.product-card__info {
+  padding: 0; 
+}
+
+.product-card__title {
+  font-size: 1.125rem; 
+  font-weight: 500; 
+  margin-bottom: var(--space-3); 
+  color: var(--text);
+}
+
+.product-card__desc {
+  color: var(--muted);
+  font-size: 0.875rem; 
+  margin-bottom: var(--space-4); 
+  line-height: 1.4;
+}
+
+.product-card__price-group {
+  margin-bottom: var(--space-5); 
+}
+
+.product-card__price {
+  font-size: 1.25rem; 
+  font-weight: 600; 
+  color: var(--text); 
+  margin-right: var(--space-3);
+}
+
+.product-card__old-price {
+  font-size: 0.95rem;
+  color: #9ca3af; 
+  text-decoration: line-through;
+}
+
+/* Botones */
+.product-card__actions {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}                  
+
+.product-card__actions .btn {
+  flex: 1;
+  font-size: 0.875rem; 
+  padding: var(--space-2) var(--space-3); 
+  border-radius: 20px; 
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-width: auto; 
+  min-height: 36px; 
+}
+
+.icono-add {
+  width: 16px; 
+  height: 16px;
+}
+
+.product-card__actions .btn .btn--secondary {
+  font-size: 0.7rem;
+  min-width: 85px;
+  min-height: 40px;
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn--secondary .icono-add {
+    width: 10px;
+    height: 10px;
+}
+
+/* Secciones de Relleno */
+/* Secciones para navegación y demostración */
+#novedades,
+#ofertas, 
+#contacto {
+  padding: var(--space-2) 0; 
+  margin: var(--space-2) 0;
+}
+
+#novedades .panel,
+#ofertas .panel,
+#contacto .panel {
+  background: var(--panel);
+  padding: var(--space-4); 
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  text-align: left;
+  margin: 0 auto; 
+}
+
+#novedades h2,
+#ofertas h2,
+#contacto h2 {
+  font-size: 1.25rem; 
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: var(--space-2); 
+}
+
+.code-note {
+  color: var(--muted);
+  font-size: 0.875rem; 
+  line-height: 1.4;
+  margin: 0;
 }

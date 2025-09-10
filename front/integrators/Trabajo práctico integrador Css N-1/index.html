@@ -17,7 +17,7 @@
            
             <!-- Hamburger -->
             <button class="nav-hamburger" type="button" aria-label="Abrir menú">
-                <img src="icon/menu.png" alt="">
+                <img src="img/icon/menu-deep.svg" alt="">
             </button>
         
             <!-- Nav DENTRO del container -->
@@ -41,31 +41,55 @@
                         <button class="btn btn--outline">Outline</button>
                         <button class="btn btn--danger">Peligro</button>
                         <button class="btn btn--icon">
-                            <img src="icon/lupa-withe.png" alt="" class="icon-lupa">
+                            <img src="img/lupa-withe.png" alt="" class="icon-lupa">
                             Con icono</button>
                         <button class="btn btn--secondary" disabled>Deshabilitado</button>
                     </div>
                 </section>
                 <section class="product-card">
                     <h2>2) Tarjeta de Producto</h2>
+                    <article class="product-card__container">
+                        <div class="product-card__media">
+                            <img class="product-card__img" src="img/zapatillas.webp" width="300" height="300" alt="Zapatillas Deportivas">
+                            <span class="product-card__badge">Nuevo</span>
+                        </div>
+                            <div class="product-card__info">
+                            <h3 class="product-card__title">Zapatillas Runner Pro</h3>
+                            <p class="product-card__desc">Amortiguación ligera, malla respirable y suela antideslizante. Perfectas para entrenar todos los días.</p>
+                        <div class="product-card__price-group">
+                            <span class="product-card__price">$24.999</span>
+                            <span class="product-card__old-price">$29.999</span>
+                        </div>
+                        <div class="product-card__actions">
+                            <button class="btn btn--primary">Comprar ahora</button>
+                            <button class="btn btn--outline"> <img src="img/icon/circle-dashed-plus.svg" alt="icono de comprar" class="icono-a">Añadir</button>
+                        </div>
+                        </div>
+                    </article>
                 </section>
             </div>
-            <!--
-            <section class="nav-section">
-                <div class="section-card">
-                    <h3>Novedades</h3>
-                    <p>Descubre las últimas novedades en nuestra tienda.</p>
-                </div>
-                <div class="section-card">
-                    <h3>Ofertas</h3>
-                    <p>Aprovecha nuestras ofertas exclusivas por tiempo limitado.</p>
-                </div>
-                <div class="section-card">
-                    <h3>Contacto</h3>
-                    <p>Contáctanos para más información sobre nuestros productos.</p>
-                </div>
-            </section>
-            -->
+        </section>
+
+        <section id="novedades" class="container">
+            <div class="panel">
+                <h2>Novedades</h2>
+                <p class="code-note">Sección de últimas noticias para probar el menú.</p>
+            </div>
+        </section>
+
+        <section id="ofertas" class="container">
+            <div class="panel">
+                <h2>Ofertas</h2>
+                <p class="code-note">Otra sección de relleno.</p>
+            </div>
+        </section>
+
+        <section id="contacto" class="container">
+            <div class="panel">
+                <h2>Contacto</h2>
+                <p class="code-note">Más contenido de ejemplo.</p>
+            </div>
+        </section>
         </div>
 
 
