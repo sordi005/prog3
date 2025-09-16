@@ -1,0 +1,50 @@
+<!-- Archivo persistence.xml -->
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence
+             https://jakarta.ee/xml/ns/persistence/persistence_3_1.xsd"
+             version="3.1">
+
+    <!-- Definición de la unidad de persistencia -->
+    <!-- name: es el nombre lógico usado en el código para obtener el EntityManager -->
+    <!-- transaction-type: RESOURCE_LOCAL indica que manejamos transacciones manualmente -->
+    <persistence-unit name="miUnidad" transaction-type="RESOURCE_LOCAL">
+
+        <!-- Proveedor de JPA que se usará (Hibernate en este caso) -->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <!-- Declaración de las clases que serán gestionadas como entidades -->
+        <!-- Cada una corresponde a una tabla en la base de datos -->
+        <class>com.ejemplo.biblioteca.Usuario</class>
+        <class>com.ejemplo.biblioteca.Libro</class>
+        <class>com.ejemplo.biblioteca.Autor</class>
+        <class>com.ejemplo.biblioteca.Prestamo</class>
+
+        <!-- Configuración de propiedades para conexión a la BD y comportamiento de Hibernate -->
+        <properties>
+
+            <!-- Driver JDBC de la base de datos -->
+            <property name="jakarta.persistence.jdbc.driver" value="org.h2.Driver"/>
+
+            <!-- URL de conexión a PostgreSQL -->
+            <!-- Formato: jdbc:postgresql://host:puerto/nombreBD -->
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE"/>
+
+            <!-- Usuario y contraseña de la BD -->
+            <property name="jakarta.persistence.jdbc.user" value="sa"/>
+            <property name="jakarta.persistence.jdbc.password" value=""/>
+
+            <!-- Estrategia de generación del esquema -->
+            <!-- update: actualiza tablas según las entidades sin borrar datos -->
+            <!-- otros valores: create, create-drop, validate, none -->
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+
+            <!-- Mostrar las consultas SQL generadas en consola -->
+            <property name="hibernate.show_sql" value="true"/>
+
+            <!-- Formatear las consultas SQL para que sean más legibles -->
+            <property name="hibernate.format_sql" value="true"/>
+
+        </properties>
+    </persistence-unit>
+</persistence>

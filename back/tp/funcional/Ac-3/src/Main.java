@@ -14,9 +14,6 @@ public class Main {
                 new Producto("lechuga", "verdura",400.1, 80),
                 new Producto("rucula", "verdura",250.75, 50)
         );
-        System.out.println("Productos:");
-        productos.forEach(System.out::println);
-
         System.out.println("\nProductos con precio mayor a 100:");
         productos.stream()
                 .filter(producto -> producto.getPrecio() > 100)
