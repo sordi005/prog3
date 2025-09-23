@@ -15,7 +15,7 @@
 
         <!-- Declaración de las clases que serán gestionadas como entidades -->
         <!-- Cada una corresponde a una tabla en la base de datos -->
-        <class>com.ejemplo.biblioteca.Usuario</class>
+        <class>jpa.Autor</class>
         <class>com.ejemplo.biblioteca.Libro</class>
         <class>com.ejemplo.biblioteca.Autor</class>
         <class>com.ejemplo.biblioteca.Prestamo</class>

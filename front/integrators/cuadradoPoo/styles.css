@@ -1,0 +1,32 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100dvh;
+    height: 100dvw;
+    background-color: #ccc;
+}
+h1 {
+    text-align: center;
+}
+.contenedor {
+    background-color: #fff;
+    width: 600px;
+    height: 400px;
+    border: 2px solid black;
+    position: relative;
+    margin: 0 auto;
+}
+.cuadrado {
+    position: absolute;
+    cursor: pointer;
+}
+.activo {
+    border: 2px dashed yellow;
+}
