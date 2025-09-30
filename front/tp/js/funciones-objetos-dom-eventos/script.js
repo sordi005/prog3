@@ -6,7 +6,7 @@ function cuadrado(num) {
     return num * num;
 }
 
-console.log("pasamos 5 nos devuelve " + cuadrado(5)); // 25
+console.log("pasamos 5 nos devuelve " + cuadrado(5)); 
 
 console.log("Funciones expresadas");
 
@@ -14,7 +14,7 @@ const cubo = function(num) {
     return num * num * num;
 }
 
-console.log("pasamos 3 nos devuelve " + cubo(3)); // 27
+console.log("pasamos 3 nos devuelve " + cubo(3)); 
 
 console.log("Funciones declarativas : Son elevadas (hoisting) y pueden ser llamadas antes de su declaracion");
 console.log("Funciones expresadas : Pueden ser anonimas, no son elevadas y no pueden ser llamadas antes de su declaracion");
