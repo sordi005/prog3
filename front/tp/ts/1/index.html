@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Los Simpsons</title>
+    <link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Api de Los Simpsons</h1>
+        <h2>Representación de personajes</h2>
+    </header>
+    <main>
+        <section id="controls" class="controls">
+            <button id="load-btn">Cargar personajes</button>
+        </section>
+        
+        <section id="loading" class="hidden">
+            <div class="spinner"></div>
+            <p>Cargando personajes...</p>
+        </section>
+        
+        <div id="error" class="hidden"></div>
+        
+        <section id="characters-container" ></section>
+    </main>    
+    <footer>
+        <a href="https://thesimpsonsapi.com/api" target="_blank">
+            API de Los Simpsons - Documentación
+        </a>
+    </footer>
+
+    <script type="module" src="dist/main.js"></script>
+</body>
+</html>
