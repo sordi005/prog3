@@ -6,17 +6,10 @@ import com.product.apicursos.dto.response.ProfesorResponseDTO;
 import com.product.apicursos.dto.response.ProfesorSimpleDTO;
 import org.springframework.stereotype.Component;
 
-import java.util.Collections;
-import java.util.stream.Collectors;
+
 
 @Component
 public class ProfesorMapper {
-
-    private final CursoMapper cursoMapper;
-
-    public ProfesorMapper(CursoMapper cursoMapper) {
-        this.cursoMapper = cursoMapper;
-    }
 
     public Profesor toEntity(CreateProfesorDTO dto) {
         if (dto == null) {
@@ -29,19 +22,7 @@ public class ProfesorMapper {
                 .fechaNacimiento(dto.getFechaNacimiento())
                 .build();
     }
-
-    public CreateProfesorDTO toDTO(Profesor entity) {
-        if (entity == null) {
-            return null;
-        }
-        return CreateProfesorDTO.builder()
-                .nombre(entity.getNombre())
-                .apellido(entity.getApellido())
-                .email(entity.getEmail())
-                .fechaNacimiento(entity.getFechaNacimiento())
-                .build();
-    }
-
+    
     public ProfesorSimpleDTO simpleDTO(Profesor entity) {
         if (entity == null) {
             return null;
@@ -63,11 +44,6 @@ public class ProfesorMapper {
                 .apellido(entity.getApellido())
                 .email(entity.getEmail())
                 .fechaNacimiento(entity.getFechaNacimiento())
-                .cursos(entity.getCursos() != null
-                        ? entity.getCursos().stream()
-                        .map(cursoMapper::toSimpleDTO)
-                        .collect(Collectors.toList())
-                        : Collections.emptyList())
                 .build();
     }
 

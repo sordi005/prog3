@@ -11,5 +11,5 @@ public class CursoResponseDTO {
     private Long id;
     private String nombre;
     private ProfesorSimpleDTO profesor;
-    private List<EstudianteSimpleDTO> estudiates;
+    private List<EstudianteSimpleDTO> estudiantes;
 }

@@ -1,0 +1,353 @@
+ENDPOINTS
+
+Principal : 
+http://localhost:8080
+
+
+PROFESOR
+
+- GET
+    - Listar todos
+        
+        http://localhost:8080/profesores
+
+    - Buscar por ID
+
+        http://localhost:8080/profesores/{id}
+
+- POST 
+    - Crear profesor
+
+        http://localhost:8080/profesores
+
+- PUT
+    - Actualizar profesor
+
+        http://localhost:8080/profesores/{id}
+
+- DELETE
+    - Eliminar profesor
+
+        http://localhost:8080/profesores/{id}
+
+
+
+ESTUDIANTE
+
+- GET
+    - Listar todos
+        
+        http://localhost:8080/estudiantes
+
+    - Buscar por ID
+
+        http://localhost:8080/estudiantes/{id}
+
+- POST 
+    - Crear estudiante
+
+        http://localhost:8080/estudiantes
+
+- PUT
+    - Actualizar estudiante
+
+        http://localhost:8080/estudiantes/{id}
+
+- DELETE
+    - Eliminar estudiante
+
+        http://localhost:8080/estudiantes/{id}
+
+
+CURSO
+
+- GET
+    - Listar todos (completo)
+        
+        http://localhost:8080/cursos
+
+    - Listar todos (simple)
+        
+        http://localhost:8080/cursos/simple
+
+    - Buscar por ID (completo)
+
+        http://localhost:8080/cursos/{id}
+
+    - Buscar por ID (simple)
+
+        http://localhost:8080/cursos/{id}/simple
+
+    - Buscar cursos por estudiante
+
+        http://localhost:8080/cursos/estudiante/{estudianteId}
+
+- POST 
+    - Crear curso
+
+        http://localhost:8080/cursos
+
+    - Agregar estudiante a curso
+
+        http://localhost:8080/cursos/{cursoId}/estudiantes/{estudianteId}
+
+- PUT
+    - Actualizar curso
+
+        http://localhost:8080/cursos/{id}
+
+- DELETE
+    - Eliminar curso
+
+        http://localhost:8080/cursos/{id}
+
+    - Remover estudiante de curso
+
+        http://localhost:8080/cursos/{cursoId}/estudiantes/{estudianteId}
+
+
+
+=============================
+Datos Inicializados de prueba
+=============================
+
+Profesores: 
+    [
+    {
+        "id": 1,
+        "nombre": "Carlos",
+        "apellido": "García",
+        "email": "carlos.garcia@universidad.edu",
+        "fechaNacimiento": "1975-05-15"
+    },
+    {
+        "id": 2,
+        "nombre": "María",
+        "apellido": "López",
+        "email": "maria.lopez@universidad.edu",
+        "fechaNacimiento": "1980-08-20"
+    },
+    {
+        "id": 3,
+        "nombre": "Juan",
+        "apellido": "Martínez",
+        "email": "juan.martinez@universidad.edu",
+        "fechaNacimiento": "1970-03-10"
+    }
+]
+
+
+Estudiantes: {
+    [
+    {
+        "id": 1,
+        "nombre": "Ana",
+        "apellido": "Rodríguez",
+        "email": "ana.rodriguez@alumno.edu",
+        "matricula": "2024001",
+        "fechaNacimiento": "2002-04-12",
+        "cursos": [
+            {
+                "id": 1,
+                "nombre": "Programación III"
+            },
+            {
+                "id": 2,
+                "nombre": "Base de Datos II"
+            },
+            {
+                "id": 4,
+                "nombre": "Arquitectura de Software"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "nombre": "Pedro",
+        "apellido": "Sánchez",
+        "email": "pedro.sanchez@alumno.edu",
+        "matricula": "2024002",
+        "fechaNacimiento": "2001-07-23",
+        "cursos": [
+            {
+                "id": 1,
+                "nombre": "Programación III"
+            },
+            {
+                "id": 3,
+                "nombre": "Desarrollo Web"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "nombre": "Laura",
+        "apellido": "Fernández",
+        "email": "laura.fernandez@alumno.edu",
+        "matricula": "2024003",
+        "fechaNacimiento": "2003-01-05",
+        "cursos": [
+            {
+                "id": 1,
+                "nombre": "Programación III"
+            },
+            {
+                "id": 3,
+                "nombre": "Desarrollo Web"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "nombre": "Diego",
+        "apellido": "Gómez",
+        "email": "diego.gomez@alumno.edu",
+        "matricula": "2024004",
+        "fechaNacimiento": "2002-09-18",
+        "cursos": [
+            {
+                "id": 3,
+                "nombre": "Desarrollo Web"
+            },
+            {
+                "id": 2,
+                "nombre": "Base de Datos II"
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "nombre": "Sofía",
+        "apellido": "Díaz",
+        "email": "sofia.diaz@alumno.edu",
+        "matricula": "2024005",
+        "fechaNacimiento": "2001-11-30",
+        "cursos": [
+            {
+                "id": 3,
+                "nombre": "Desarrollo Web"
+            },
+            {
+                "id": 4,
+                "nombre": "Arquitectura de Software"
+            }
+        ]
+    }
+]
+}
+
+
+Cursos: 
+
+[
+    {
+        "id": 1,
+        "nombre": "Programación III",
+        "profesor": {
+            "id": 1,
+            "nombre": "Carlos",
+            "apellido": "García"
+        },
+        "estudiantes": [
+            {
+                "id": 3,
+                "nombre": "Laura",
+                "apellido": "Fernández",
+                "matricula": "2024003"
+            },
+            {
+                "id": 2,
+                "nombre": "Pedro",
+                "apellido": "Sánchez",
+                "matricula": "2024002"
+            },
+            {
+                "id": 1,
+                "nombre": "Ana",
+                "apellido": "Rodríguez",
+                "matricula": "2024001"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "nombre": "Base de Datos II",
+        "profesor": {
+            "id": 2,
+            "nombre": "María",
+            "apellido": "López"
+        },
+        "estudiantes": [
+            {
+                "id": 4,
+                "nombre": "Diego",
+                "apellido": "Gómez",
+                "matricula": "2024004"
+            },
+            {
+                "id": 1,
+                "nombre": "Ana",
+                "apellido": "Rodríguez",
+                "matricula": "2024001"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "nombre": "Desarrollo Web",
+        "profesor": {
+            "id": 1,
+            "nombre": "Carlos",
+            "apellido": "García"
+        },
+        "estudiantes": [
+            {
+                "id": 4,
+                "nombre": "Diego",
+                "apellido": "Gómez",
+                "matricula": "2024004"
+            },
+            {
+                "id": 5,
+                "nombre": "Sofía",
+                "apellido": "Díaz",
+                "matricula": "2024005"
+            },
+            {
+                "id": 3,
+                "nombre": "Laura",
+                "apellido": "Fernández",
+                "matricula": "2024003"
+            },
+            {
+                "id": 2,
+                "nombre": "Pedro",
+                "apellido": "Sánchez",
+                "matricula": "2024002"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "nombre": "Arquitectura de Software",
+        "profesor": {
+            "id": 3,
+            "nombre": "Juan",
+            "apellido": "Martínez"
+        },
+        "estudiantes": [
+            {
+                "id": 5,
+                "nombre": "Sofía",
+                "apellido": "Díaz",
+                "matricula": "2024005"
+            },
+            {
+                "id": 1,
+                "nombre": "Ana",
+                "apellido": "Rodríguez",
+                "matricula": "2024001"
+            }
+        ]
+    }
+]

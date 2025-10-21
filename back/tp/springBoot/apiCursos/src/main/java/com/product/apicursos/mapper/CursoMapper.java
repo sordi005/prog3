@@ -18,7 +18,7 @@ public class CursoMapper {
     private  final ProfesorMapper profesorMapper;
 
     // Lazy para evitar dependencia circular
-    public CursoMapper(@Lazy EstudianteMapper estudianteMapper, @Lazy ProfesorMapper profesorMapper) {
+    public CursoMapper(@Lazy EstudianteMapper estudianteMapper, ProfesorMapper profesorMapper) {
         this.estudianteMapper = estudianteMapper;
         this.profesorMapper = profesorMapper;
     }
@@ -30,22 +30,6 @@ public class CursoMapper {
         return Curso.builder()
                 .name(dto.getNombre())
                 .profesor(profesorEntity)
-                .build();
-    }
-
-    public CursoResponseDTO toDto (Curso entity) {
-        if (entity == null) {
-            return null;
-        }
-        return CursoResponseDTO.builder()
-                .id(entity.getId())
-                .nombre(entity.getName())
-                .profesor(profesorMapper.simpleDTO(entity.getProfesor()))
-                .estudiates(entity.getEstudiantes()  != null
-                        ? entity.getEstudiantes().stream()
-                        .map(estudianteMapper::toSimpleDTO)
-                        .collect(Collectors.toList())
-                        : Collections.emptyList())
                 .build();
     }
 
@@ -67,7 +51,7 @@ public class CursoMapper {
                 .id(entity.getId())
                 .nombre(entity.getName())
                 .profesor(profesorMapper.simpleDTO(entity.getProfesor()))
-                .estudiates(entity.getEstudiantes()  != null
+                .estudiantes(entity.getEstudiantes()  != null
                         ? entity.getEstudiantes().stream()
                         .map(estudianteMapper::toSimpleDTO)
                         .collect(Collectors.toList())
