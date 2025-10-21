@@ -9,8 +9,6 @@ const charactersContainer = document.getElementById("characters-container");
 const showLoading = () => {
     // Mostrar el contenedor de loading
     loadingContainer.classList.remove("hidden");
-    // Ocultar el contenedor de error
-    errorContainer.classList.add("hidden");
 };
 const hideLoading = () => {
     // Ocultar el contenedor de loading

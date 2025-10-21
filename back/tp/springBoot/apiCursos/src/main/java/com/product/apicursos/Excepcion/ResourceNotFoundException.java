@@ -1,4 +1,7 @@
 package com.product.apicursos.Excepcion;
 
-public class ResourceNoFoundException {
+public class ResourceNotFoundException extends RuntimeException {
+    public ResourceNotFoundException(String message) {
+        super(message);
+    }
 }
