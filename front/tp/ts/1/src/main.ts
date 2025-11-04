@@ -23,6 +23,8 @@ const showLoading = (): void => {
     // Mostrar el contenedor de loading
     loadingContainer.classList.remove("hidden");
 
+    // Ocultar el contenedor de error
+    errorContainer.classList.add("hidden");
 }
 
 const hideLoading = (): void => {
@@ -53,18 +55,11 @@ const createCharacterCard = (character: Icharacter): HTMLDivElement => {
     const characterImage = document.createElement("img");
     characterImage.src = `${baseImageUrl}${character.portrait_path}`;    
 
-    //crear el h3 de nombre
     const characterName = document.createElement("h3");
     characterName.textContent = character.name;
 
-    //crear el p de frase
     const characterPhrase = document.createElement("p");
-
-    //Busca la primera frase que tenga menos de 100 caracteres
-    const shortPhrase = character.phrases.find(phrase => phrase.length < 100);
-    
-    //si no hay ninguna frase que cumpla la condicion, muestra "Sin frase disponible"
-    characterPhrase.textContent = shortPhrase ? shortPhrase : "Sin frase disponible";
+    characterPhrase.textContent = character.phrases[0];
 
     characterCard.appendChild(characterImage);
     characterCard.appendChild(characterName);
@@ -77,7 +72,7 @@ const createCharacterCard = (character: Icharacter): HTMLDivElement => {
 const renderCharacters = (characters: Icharacter[]): void => {
     // remover caracteres existentes
     charactersContainer.innerHTML = "";
-    // crear los personajes
+    // crearimage.png los personajes
     characters.forEach(character => {
         const characterCard = createCharacterCard(character);
         charactersContainer.appendChild(characterCard);
@@ -93,7 +88,6 @@ const fetchCharacters = async (): Promise<void> => {
         console.log("Accediendo Api de Los Simpsons");
         const response = await fetch(baseUrl);
         if(!response.ok){
-            console.error("Error en la respuesta de la API");
             throw new Error("Error al obtener los personajes");
         }
         const data:IapiResponse = await response.json();
