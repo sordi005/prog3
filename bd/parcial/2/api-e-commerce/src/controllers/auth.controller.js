@@ -49,15 +49,36 @@ export const login = async (req, res) => {
 export const register = async (req, res) => {
     try {
 
+        const {nombre, edad, email, contrasena } = req.body
+
         console.log("Iniciando proceso de registro para email:", email);
 
-        const {nombre, edad, email, contrasena } = req.body
-        
+
         if(!nombre || !edad || !email || !contrasena){
             console.warn("Parámetros incompletos en registro:", req.body);
             return res.status(400).json({message:'Faltan parámetros requeridos'})
         }
 
+        if(nombre.length < 3 || nombre.length > 50){
+            return res.status(400).json({message:'El nombre debe tener al menos 3 caracteres'})
+        }
+
+        if(/[0-9]/.test(nombre)){
+            return res.status(400).json({message:'El nombre no puede contener números'})
+        }
+
+        if(edad < 0){
+            return res.status(400).json({message:'La edad no puede ser negativa'})
+        }
+
+        if(contrasena.length < 6){
+            return res.status(400).json({message:'La contraseña debe tener al menos 6 caracteres'})
+        }
+
+
+       
+
+        console.log("Verificando si el email ya existe:", email);
         // Verificar si el email ya existe
         const existingUser = await User.findOne({email})
         if(existingUser){
@@ -66,7 +87,6 @@ export const register = async (req, res) => {
 
         const hashedPassword = await encryptPass(contrasena)
 
-        // Crear usuario
         const newUser = new User({
             nombre,
             edad,

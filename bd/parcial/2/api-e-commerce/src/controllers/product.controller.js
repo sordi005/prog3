@@ -1,6 +1,7 @@
 import { Categoria } from "../models/categoria.js";
 import { Producto } from "../models/producto.js";
-
+import { Resena } from "../models/resena.js";
+import mongoose from "mongoose";
 
 export const createProduct = async (req, res) => {
     try {
@@ -23,8 +24,7 @@ export const createProduct = async (req, res) => {
             descripcion,
             categoriaId,
             precio,
-            stock,
-            resenas: []
+            stock
         });
 
         await newProduct.save();
@@ -36,8 +36,7 @@ export const createProduct = async (req, res) => {
             descripcion: newProduct.descripcion,
             categoriaId: newProduct.categoriaId,
             precio: newProduct.precio,
-            stock: newProduct.stock,
-            resenas: newProduct.resenas
+            stock: newProduct.stock
         };
 
 
@@ -78,8 +77,7 @@ export const getAllProducts = async (req, res) => {
                         id: "$categoria._id",
                         nombre: "$categoria.nombre",
                         descripcion: "$categoria.descripcion"
-                    },
-                    resenas: 1
+                    }
                 },
             },
             {
@@ -111,7 +109,7 @@ export const getProductById = async (req, res) => {
 
         const producto = await Producto.aggregate([
             {
-                $match: { _id: new ObjectId(id) }
+                $match: { _id: new mongoose.Types.ObjectId(id) }
             },
             {
                 $lookup: {
@@ -139,15 +137,14 @@ export const getProductById = async (req, res) => {
                         id: "$categoria._id",
                         nombre: "$categoria.nombre",
                         descripcion: "$categoria.descripcion"
-                    },
-                    resenas: {
-                        $ifNull: ["$resenas", []],
                     }
                 }
             }
         ]);
 
         const productoEncontrado = producto[0];
+
+        console.log("Producto encontrado:", productoEncontrado)
 
         if (!productoEncontrado) {
             console.warn("Producto no encontrado con ID:", id)
@@ -206,8 +203,7 @@ export const updateProduct = async (req, res) => {
             descripcion: producto.descripcion,
             categoriaId: producto.categoriaId,
             precio: producto.precio,
-            stock: producto.stock,
-            resenas: producto.resenas
+            stock: producto.stock
         }
 
         return res.status(200).json({ product: productoResponse })
@@ -278,14 +274,27 @@ export const deleteProduct = async (req, res) => {
 
 export const filterProductByRangePrice = async (req, res) => {
     try {
-        const { minPrice, maxPrice } = req.query;
-        console.info(`Filtrando productos por rango de precio: ${minPrice} - ${maxPrice}`);
+
+        const { min, max } = req.query;
+        console.log("Parámetros de precio:", min, max);
+        if (!min || !max || isNaN(min) || isNaN(max)) {
+            return res.status(400).json({ message: 'Faltan parámetros de precio' });
+        }
+        console.info(`Filtrando productos por rango de precio: ${min} - ${max}`);
 
         const productos = await Producto.find({
-            precio: { $gte: minPrice, $lte: maxPrice }
+            precio: { $gte: min, $lte: max }
         });
 
-        return res.status(200).json({ products: productos });
+        const productResponse = productos.map(producto => ({
+            id: producto._id,
+            nombre: producto.nombre,
+            precio: producto.precio,
+            stock: producto.stock,
+            categoria: producto.categoria
+        }));
+
+        return res.status(200).json({ cantidad: productos.length, productos: productResponse });
     } catch (error) {
         console.error("Error al filtrar productos:", error);
         return res.status(500).json({ message: `Error: ${error.message}` });
@@ -295,82 +304,81 @@ export const filterProductByRangePrice = async (req, res) => {
 export const getTopPructsByResenas = async (req, res) => {
     try {
         console.info("Obteniendo productos con más reseñas");
-        const {limit = 5} = req.query;
+        const { limit = 10 } = req.query;
 
-        const productos = await Producto.aggregate([
-            
-                {
-                    $match: {
-                        cantidadReseñas: { $gt: 0 }
-                    }
-                },
-                {
-                   $project: {
-                       _id: 1,
-                       nombre: 1, 
-                       cantidadReseñas: { $size: { $ifNull: ["$resenas", []] } }
-                   }
-                },
-                {
-                    $sort: { cantidadReseñas: -1 }
-                },
-                {
-                    $limit: parseInt(limit)
+        const productosMasResenados = await Resena.aggregate([
+            {
+                $group: {
+                    _id: "$productoId",
+                    cantidadResenas: { $sum: 1 },
+                    promedioCalificacion: { $avg: "$calificacion" }
                 }
-            
+            },
+            {
+                $sort: { 
+                    cantidadResenas: -1,
+                    promedioCalificacion: -1
+                }
+            },
+            {
+                $limit: parseInt(limit)
+            },
+            {
+                $lookup: {
+                    from: 'productos',
+                    localField: '_id',
+                    foreignField: '_id',
+                    as: 'producto'
+                }
+            },
+            {
+                $unwind: "$producto"
+            },
+            {
+                $lookup: {
+                    from: 'categorias',
+                    localField: 'producto.categoriaId',
+                    foreignField: '_id',
+                    as: 'categoria'
+                }
+            },
+            {
+                $unwind: {
+                    path: "$categoria",
+                    preserveNullAndEmptyArrays: true
+                }
+            },
+            {
+                $project: {
+                    _id: 0,
+                    id: "$producto._id",
+                    nombre: "$producto.nombre",
+                    descripcion: "$producto.descripcion",
+                    precio: "$producto.precio",
+                    stock: "$producto.stock",
+                    categoria: {
+                        id: "$categoria._id",
+                        nombre: "$categoria.nombre"
+                    },
+                    cantidadResenas: 1,
+                    promedioCalificacion: 1
+                }
+            }
         ]);
 
-        console.info("Productos obtenidos con éxito por reseñas:", productos.map(p => p._id));
-
-        return res.status(200).json({ products: productos });
+        res.status(200).json({
+            success: true,
+            data: {
+                cantidad: productosMasResenados.length,
+                productos: productosMasResenados
+            }
+        });
     } catch (error) {
-        console.error("Error al obtener productos por reseñas:", error);
-        return res.status(500).json({ message: `Error: ${error.message}` });
+        console.error("Error al obtener productos más reseñados:", error);
+        res.status(500).json({ 
+            success: false,
+            error: { message: error.message } 
+        });
     }
 }
 
-export const addResenaToProduct = async (req, res) => {
-    try {
-        console.info("Agregando reseña al producto");
-        const { id } = req.params;
-        const {comentario, calificacion } = req.body;
-        const usuarioId =  req.userId;
-
-        if (!usuarioId || !comentario || !calificacion) {
-            return res.status(400).json({ message: 'Faltan datos en la reseña' });
-        }
-
-        if (calificacion < 1 || calificacion > 5) {
-            return res.status(400).json({ message: 'La calificación debe estar entre 1 y 5' });
-        }
-
-        const producto = await Producto.findById(id);
-
-        if (!producto) {
-            return res.status(404).json({ message: 'Producto no encontrado' });
-        }
-
-        const nuevaResena = {
-            usuarioId,
-            comentario,
-            calificacion,
-            fecha : new Date()
-        };
-
-        producto.resenas.push(nuevaResena);
-        await producto.save();
-
-
-        console.info("Reseña agregada con éxito al producto:", id);
-
-        return res.status(201).json({ message: 'Reseña agregada con éxito', reseña: {
-            usuarioId: nuevaResena.usuarioId,
-            comentario: nuevaResena.comentario,
-            calificacion: nuevaResena.calificacion,
-            fecha: nuevaResena.fecha
-        } });
-    } catch (error) {
-        console.error("Error al agregar reseña al producto:", error);
-        return res.status(500).json({ message: `Error: ${error.message}` });
-    }
-}

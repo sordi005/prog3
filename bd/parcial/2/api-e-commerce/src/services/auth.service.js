@@ -6,7 +6,7 @@ export const generateToken =(userResponse)=>{
 
     console.log("Generando token para usuario: ", userResponse.email);
 
-    const datos = {
+    const user = {
         id:userResponse.id,
         nombre:userResponse.nombre,
         email:userResponse.email,
@@ -14,7 +14,7 @@ export const generateToken =(userResponse)=>{
     }
 
 
-    const token = jwt.sign(datos,secret,{expiresIn:'24h'})
+    const token = jwt.sign(user,secret,{expiresIn:'7d'})
     console.log("Token generado: ", token);
 
     return token 
@@ -29,14 +29,3 @@ export const verifyToken = (token) => {
     }
 }
 
-export const verifyTokenAsync = (token) => {
-    return new Promise((resolve, reject) => {
-        jwt.verify(token, secret, (err, decoded) => {
-            if (err) {
-                reject(new Error(`Token inválido: ${err.message}`))
-            } else {
-                resolve(decoded)
-            }
-        })
-    })
-}

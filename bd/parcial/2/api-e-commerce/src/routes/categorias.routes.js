@@ -11,9 +11,20 @@ import { isAdmin, validateToken } from "../middlewares/auth.middleware.js";
 
 export const categoriaRoutes = express.Router();
 
-categoriaRoutes.post('/',validateToken,isAdmin, createCategoria);
-categoriaRoutes.get('/', validateToken, getAllCategorias);
-categoriaRoutes.get('/:id', validateToken, getCategoriaById);
-categoriaRoutes.put('/:id', validateToken,isAdmin, updateCategoria);
-categoriaRoutes.delete('/:id', validateToken,isAdmin, deleteCategoria);
+//Obtener estadisticas de las categorias
 categoriaRoutes.get('/stats', validateToken,isAdmin, getCategoriawithProductos);
+
+//Crear categoria
+categoriaRoutes.post('/',validateToken,isAdmin, createCategoria);
+
+//Obtener todas las categorias
+categoriaRoutes.get('/', validateToken, getAllCategorias);
+
+//Obtener categoria por ID
+categoriaRoutes.get('/:id', validateToken, getCategoriaById);
+
+//Actualizar categoria
+categoriaRoutes.patch('/:id', validateToken,isAdmin, updateCategoria);
+
+//Eliminar categoria
+categoriaRoutes.delete('/:id', validateToken,isAdmin, deleteCategoria);
